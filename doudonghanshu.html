@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            position: absolute;
+            top:200px;
+            left: 300px;
+            width: 128px;
+            height: 128px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="getstyle.js"></script>
+    <script>
+        window.onload = function (){
+
+            var  oImg = document.getElementById('img');
+
+            oImg.onclick = function(){
+                var pos = parseInt(getstyle(oImg,'left'));//如果在此处定义pos,那么pos是不变的;
+                var num=0;
+                var timer =null;
+                var arr = [];
+
+                clearInterval(timer);
+
+                timer = setInterval(function(){
+                    //var pos = parseInt(getstyle(oImg,'left'));  //如果在此处定义抖动pos是动态的
+                    oImg.style.left = pos + arr[num]+'px';
+                    num++;
+                    alert(pos);
+                    if(num === arr.length){
+                        clearInterval(timer);
+                    }
+
+
+                },50);
+
+
+
+
+                for(var i=20;i>0;i-=2){
+                    arr.push(i,-i);//生成一个抖动用的左右数组,我才知道还可以一口气添加几个数
+
+                }
+                arr.push(0);
+
+                //alert(arr);
+            };
+        };
+
+
+    </script>
+
+</head>
+<body>
+<img src="turkey_animal_128px_521095_easyicon.net.png" id="img">
+</body>
+</html>
